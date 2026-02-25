@@ -1,4 +1,9 @@
-﻿export type Local = {
+import Mapbox from "@rnmapbox/maps";
+
+export type MapboxCoordinate = React.ComponentProps<
+  typeof Mapbox.PointAnnotation
+>["coordinate"];
+export type Local = {
   latitude: number;
   longitude: number;
   altitude: number | null;

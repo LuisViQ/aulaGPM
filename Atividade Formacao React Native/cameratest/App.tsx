@@ -1,28 +1,62 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { CameraView, CameraType, useCameraPermissions } from "expo-camera";
 import { useState } from "react";
-export default function App() {
-  const [type, setType] = useState<CameraType>("back");
-  const [permission, setPermission] = useCameraPermissions();
-  const [count, setCount] = useState(0);
+import {
+  Alert,
+  Button,
+  Image,
+  View,
+  Text,
+  StyleSheet,
+  Pressable,
+} from "react-native";
+import * as ImagePicker from "expo-image-picker";
 
-  console.log(count);
+export default function ImagePickerExample() {
+  const [image, setImage] = useState<string | null>(null);
+  const [resultado, setResultado] =
+    useState<ImagePicker.ImagePickerResult | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  const pickImage = async () => {
+    const permissionResult =
+      await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (!permissionResult.granted) {
+      Alert.alert(
+        "Permission required",
+        "Permission to access the media library is required.",
+      );
+      return;
+    }
+
+    setLoading(true);
+
+    const result = await ImagePicker.launchCameraAsync({
+      mediaTypes: ["images", "videos"],
+      quality: 1,
+    });
+
+    setResultado(result);
+
+    if (!result.canceled) {
+      setImage(result.assets[0].uri);
+    }
+
+    setLoading(false);
+  };
+
   return (
     <View style={styles.container}>
-      <CameraView style={{ flex: 1 }} facing={type} ratio="16:9" zoom={0}>
-        <View style={styles.mainView}>
-          <TouchableOpacity
-            style={styles.flipArea}
-            onPress={() => {
-              setType(type === "back" ? "front" : "back");
-            }}
-          >
-            <Text style={styles.flipText}>FlipCamera</Text>
-          </TouchableOpacity>
-        </View>
-      </CameraView>
-      <StatusBar style="auto" />
+      <Button title="take a photo" onPress={pickImage} />
+
+      {loading && <Text>esperando a seleção...</Text>}
+
+      {image && (
+        <Pressable
+          onPress={() => console.log(resultado)}
+          style={styles.bgcolor}
+        >
+          <Image source={{ uri: image }} style={styles.image} />
+        </Pressable>
+      )}
     </View>
   );
 }
@@ -30,21 +64,10 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 12,
   },
-  mainView: {
-    flex: 1,
-    backgroundColor: "transparent",
-    flexDirection: "row",
-  },
-  flipArea: {
-    position: "absolute",
-    bottom: 20,
-    left: 20,
-  },
-  flipText: {
-    fontSize: 20,
-    marginBottom: 15,
-    color: "#fff",
-  },
+  bgcolor: { backgroundColor: "red", padding: 8, borderRadius: 10 },
+  image: { width: 750, height: 750, borderRadius: 10 },
 });

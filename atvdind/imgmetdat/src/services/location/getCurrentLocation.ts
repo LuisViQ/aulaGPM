@@ -13,7 +13,7 @@ async function requestLocationPermission(): Promise<boolean> {
           buttonNeutral: "Ask me later",
           buttonNegative: "Cancel",
           buttonPositive: "OK",
-        }
+        },
       );
 
       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
@@ -47,7 +47,7 @@ export async function getCurrentLocation(): Promise<Local | null> {
         console.log(error.code, error.message);
         resolve(null);
       },
-      { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
+      { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 },
     );
   });
 }

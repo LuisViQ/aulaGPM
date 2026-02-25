@@ -1,44 +1,74 @@
-﻿import React from "react";
-import { Text, View } from "react-native";
-import MapView, { Marker } from "react-native-maps";
-import type { Local } from "../../types/location";
+import React from "react";
+import { View, Text, Button } from "react-native";
+import Mapbox from "@rnmapbox/maps";
+import type { MapboxCoordinate } from "../../types/location";
 import { styles } from "./styles";
 
-type LocationMapProps = {
-  location: Local;
-  title?: string;
-  description?: string;
-};
+export function LocationMap() {
+  const markerCoordinate: MapboxCoordinate = [-44.6975, -4.9873];
 
-export function LocationMap({
-  location,
-  title = "Sua localizacao",
-  description = "Aqui e onde voce se encontra",
-}: LocationMapProps) {
+  const routeGeoJSON = {
+    type: "Feature",
+    geometry: {
+      type: "LineString",
+      coordinates: [
+        [-44.696748, -4.986742],
+        [-44.6975, -4.9873],
+        [-44.6985, -4.9885],
+        [-44.6992, -4.9892],
+      ],
+    },
+  };
+
   return (
     <View style={styles.container}>
-      <Text style={styles.coords}>
-        Lat: {location.latitude} | Long: {location.longitude}
-      </Text>
-      <MapView
+      <Mapbox.MapView
         style={styles.map}
-        pointerEvents="none"
-        initialRegion={{
-          latitude: location.latitude,
-          longitude: location.longitude,
-          latitudeDelta: 0.01,
-          longitudeDelta: 0.01,
-        }}
+        styleURL="mapbox://styles/mapbox/satellite-v9"
       >
-        <Marker
-          coordinate={{
-            latitude: location.latitude,
-            longitude: location.longitude,
-          }}
-          title={title}
-          description={description}
+        <Mapbox.Camera
+          followUserLocation
+          followZoomLevel={13}
+          centerCoordinate={markerCoordinate}
         />
-      </MapView>
+
+        <Mapbox.UserLocation
+          visible
+          androidRenderMode="gps"
+          showsUserHeadingIndicator
+        />
+
+        <Mapbox.ShapeSource id="routeSource" shape={routeGeoJSON}>
+          <Mapbox.LineLayer
+            id="routeLine"
+            style={{
+              lineJoin: "round",
+              lineCap: "round",
+              lineColor: "#FF0000",
+              lineWidth: 4,
+              lineOpacity: 0.9,
+            }}
+          />
+        </Mapbox.ShapeSource>
+
+        <Mapbox.PointAnnotation
+          id="youHouse"
+          coordinate={markerCoordinate}
+          anchor={{ x: 0.5, y: 1 }}
+        >
+          <Mapbox.Callout title="ola">
+            <View style={{ backgroundColor: "white", padding: 5 }}>
+              <Text>Texto personalizado</Text>
+              <Button
+                title="Olá"
+                onPress={() => {
+                  console.log("test");
+                }}
+              />
+            </View>
+          </Mapbox.Callout>
+        </Mapbox.PointAnnotation>
+      </Mapbox.MapView>
     </View>
   );
 }
