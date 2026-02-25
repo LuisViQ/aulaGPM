@@ -2,12 +2,13 @@ import React from "react";
 import { View, Text, Button } from "react-native";
 import Mapbox from "@rnmapbox/maps";
 import type { MapboxCoordinate } from "../../types/location";
+import type { Feature, LineString } from "geojson";
 import { styles } from "./styles";
 
 export function LocationMap() {
   const markerCoordinate: MapboxCoordinate = [-44.6975, -4.9873];
 
-  const routeGeoJSON = {
+  const routeGeoJSON: Feature<LineString> = {
     type: "Feature",
     geometry: {
       type: "LineString",
@@ -18,6 +19,7 @@ export function LocationMap() {
         [-44.6992, -4.9892],
       ],
     },
+    properties: {},
   };
 
   return (
