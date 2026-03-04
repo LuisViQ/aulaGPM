@@ -1,38 +1,35 @@
-# Aulas GPM — JavaScript, TypeScript e React Native
+﻿# Aulas GPM — JavaScript, TypeScript e React Native
 
-Repositório de estudos organizado por trilhas. Aqui tem desafios rápidos, mini projetos e apps completos. Cada pasta é independente: entre, rode, e volte quando quiser.
+Repositório de estudos organizado por trilhas. Cada pasta é um projeto independente, com dependências e execução próprias.
 
-## O que você encontra
-- fundamentos de JS com exercícios curtos
-- desafios de lógica da DIO (incluindo versões refinadas)
-- projetos em TypeScript (web e Node)
-- apps mobile com React Native (Expo)
+## Trilhas do repositório
 
-## Projetos em destaque
-- **Dio Bank (TS)**: classes, herança e regras de negócio simples.
-- **API Node + TypeORM**: CRUD com SQLite e migrations.
-- **React + TS**: app com rotas e layout base.
-- **React Native (Expo)**: portfólio mobile, gerador de senha, tela Bat-Sinal, atividades independentes.
+- `Atividades CURSO EM VIDEO JS/`: fundamentos de JavaScript no navegador.
+- `Atividades JS ES6/`: exercícios com ES6, `async/await` e `fetch`.
+- `Atividades DIO AULAS/`: desafios de lógica em Node.js.
+- `Atividades DIO REFINANDO/`: desafios DIO com entrada/saída no padrão `gets/print`.
+- `Atividade Formacao TS/`: estudos em TypeScript (fundamentos, Node e React).
+- `Atividade Formacao React Native/`: apps mobile com Expo e React Native.
+- `atvdind/imgmetdat/`: projeto independente em React Native (Expo).
+- `tmp-test/`: CRUD genérico com React Native + TypeScript + Realm.
 
 ## Mapa rápido
-| Pasta | O que é | Como executar |
+
+| Pasta | Foco | Como executar |
 | --- | --- | --- |
-| `Atividade Formacao TS/` | TypeScript + Node + React | `npm install` / `npm run dev` / `npm start` |
-| `Atividade Formacao React Native/` | Apps Expo | `npm install` / `npm start` |
-| `Atividades JS ES6/` | async/await + fetch | servidor estático |
-| `Atividades DIO AULAS/` | desafios de lógica | `node index.js` |
-| `Atividades DIO REFINANDO/` | desafios com `gets/print` | adaptar stdin |
-| `Atividades CURSO EM VIDEO JS/` | exercícios JS/HTML | abrir no navegador |
+| `Atividades CURSO EM VIDEO JS/` | JS + HTML/CSS | abrir os arquivos `.html` no navegador |
+| `Atividades JS ES6/` | ES6 + Fetch | servidor estático local |
+| `Atividades DIO AULAS/` | lógica com Node | `node <arquivo>.js` |
+| `Atividades DIO REFINANDO/` | lógica DIO (`gets/print`) | adaptar para `stdin`/`console.log` |
+| `Atividade Formacao TS/` | TS, Node e React | `npm install` e scripts de cada subpasta |
+| `Atividade Formacao React Native/` | apps Expo | `npm install` + `npm start` |
+| `atvdind/imgmetdat/` | app Expo | `npm install` + `npm start` |
+| `tmp-test/` | CRUD genérico com Realm | `npm install` + `npm start` |
 
-## Por onde começar
-1. **JavaScript base**: `Atividades CURSO EM VIDEO JS/` e depois `Atividades JS ES6/`.
-2. **Lógica e desafios**: `Atividades DIO AULAS/` e `Atividades DIO REFINANDO/`.
-3. **TypeScript**: `Atividade Formacao TS/Fundamentos do TS/`.
-4. **Front-end**: `Atividade Formacao TS/Introducao ao React/my-app-ts/`.
-5. **Mobile**: `Atividade Formacao React Native/react-nav/`.
+## Execução por stack
 
-## Como rodar (atalhos)
-### TypeScript / Node / React
+### TypeScript (Node)
+
 ```bash
 cd "Atividade Formacao TS/Fundamentos do TS"
 npm install
@@ -46,28 +43,35 @@ npm run migration:run
 npm run dev
 ```
 
+### React (TypeScript)
+
 ```bash
-cd "Atividade Formacao TS/Introducao ao React/my-app-ts"
+cd "Atividade Formacao TS/Introdução ao React/my-app-ts"
 npm install
 npm start
 ```
 
 ### React Native (Expo)
+
 ```bash
 cd "Atividade Formacao React Native/react-nav"
 npm install
 npm start
 ```
-Troque o caminho por `bat-help`, `bat-pass-app`, `aula-states` ou `introduicaoaoreactnative` para outros apps.
 
-### Navegador
+Outros apps Expo seguem o mesmo padrão (`bat-help`, `bat-pass-app`, `aula-states`, `aula-context`, `introduicaoaoreactnative`, `videoCamera`, `cameratest`, `lamborghini-garage`, `atvdind/imgmetdat`, `tmp-test`).
+
+### JavaScript no navegador
+
 ```bash
 cd "Atividades JS ES6"
 python -m http.server 3000
 ```
+
 Depois abra `http://localhost:3000/index.html`.
 
-### Desafios em Node
+### Desafios Node
+
 ```bash
 node "Atividades DIO AULAS/Desafio1/index.js"
 node "Atividades DIO AULAS/Desafio2/index.js"
@@ -75,5 +79,7 @@ node "Atividades DIO AULAS/Desafio3/index.js"
 ```
 
 ## Observações
-- Os desafios em `Atividades DIO REFINANDO/` usam `gets/print` da plataforma. Para testar localmente, leia do `stdin` e use `console.log`.
-- Cada pasta tem seu próprio contexto e dependências.
+
+- Em `Atividades DIO REFINANDO/`, os exercícios usam `gets/print` da plataforma DIO.
+- Para execução local, adapte para leitura via `stdin` e saída com `console.log`.
+- Como os projetos são independentes, instale dependências dentro da pasta desejada.
