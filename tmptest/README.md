@@ -1,4 +1,4 @@
-# CRUD Generico com React Native + TypeScript + Realm
+﻿# CRUD Generico com React Native + TypeScript + Realm
 
 Projeto de estudo com um CRUD reutilizavel para multiplas entidades, usando React Native (Expo), TypeScript, Realm e `expo-router`.
 
@@ -9,7 +9,9 @@ Projeto de estudo com um CRUD reutilizavel para multiplas entidades, usando Reac
 - Editar registros
 - Excluir com confirmacao
 - Reaproveitar o mesmo componente para entidades diferentes
-- Navegacao por abas com uma tela para cada tabela
+- Navegacao por abas com uma tela para cada entidade
+- Suporte a campos `string`, `number` e `checkbox`
+- Tipagem para estado vazio contextual (`something` ou `someone`)
 
 ## Stack
 
@@ -23,7 +25,7 @@ Projeto de estudo com um CRUD reutilizavel para multiplas entidades, usando Reac
 ## Estrutura principal
 
 ```txt
-tmp-test/
+tmptest/
   app/
     _layout.tsx
     (tabs)/
@@ -42,13 +44,17 @@ tmp-test/
         checklist.ts
 ```
 
-## Telas atuais
+## Abas atuais
 
 - `Warehouse` (`app/(tabs)/warehouse.tsx`)
 - `Users` (`app/(tabs)/users.tsx`)
 - `Checklist` (`app/(tabs)/checklist.tsx`)
 
-Todas usam o mesmo componente:
+As rotas de abas sao configuradas em `app/(tabs)/_layout.tsx` com `Tabs.Screen`.
+
+## Tipagem do CRUD
+
+Todas as telas reutilizam o mesmo componente generico:
 
 ```tsx
 <GenericCrudScreen<T> />
@@ -58,7 +64,25 @@ Props principais:
 
 - `title`: titulo da tela
 - `schemaName`: nome do schema no Realm
-- `fields`: configuracao de campos do formulario/lista
+- `fields`: configuracao de campos do formulario/lista, tipada por entidade (`FieldConfig<T>`)
+- `emptyStateTarget`: tipado como `"something" | "someone"`
+
+Exemplo de tipagem do alvo de estado vazio (tipo de pessoa/coisa):
+
+```ts
+export type EmptyStateTarget = "something" | "someone";
+```
+
+Uso na aba de usuarios:
+
+```tsx
+<GenericCrudScreen<Users>
+  title="Users"
+  schemaName="Users"
+  emptyStateTarget="someone"
+  fields={...}
+/>
+```
 
 ## Como executar
 
@@ -96,3 +120,4 @@ npm run lint
 - O helper `parseByType` converte campos `number` vindos do `TextInput`.
 - Novos registros recebem `_id` automaticamente com `Realm.BSON.ObjectId`.
 - A lista e reativa com `useQuery`, entao atualiza apos create/edit/delete sem refresh manual.
+- Campos `checkbox` podem definir `checkedValue` e `uncheckedValue` por tela.

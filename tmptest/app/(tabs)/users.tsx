@@ -9,6 +9,7 @@ export default function UsersScreen() {
       <GenericCrudScreen<Users>
         title="Users"
         schemaName="Users"
+        emptyStateTarget="someone"
         fields={
           [
             { key: "username", label: "Username", type: "string" },

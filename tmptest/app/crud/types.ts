@@ -1,13 +1,23 @@
-export type CrudFieldType = "string" | "number";
+export type CrudFieldType = "string" | "number" | "checkbox";
 export type CrudMode = "create" | "edit";
+export type EmptyStateTarget = "something" | "someone";
 
-// Config de um campo que aparece no formulário/lista.
-// - key: só permite chaves que existam na entidade (keyof T)
-export type FieldConfig<T, K extends keyof T = keyof T> = {
+type TextFieldConfig<T, K extends keyof T = keyof T> = {
   key: K;
   label: string;
-  type: CrudFieldType;
+  type: "string" | "number";
 };
 
-// Valor que o form guarda (TextInput entrega string, mas "number" vira number)
+type CheckboxFieldConfig<T, K extends keyof T = keyof T> = {
+  key: K;
+  label: string;
+  type: "checkbox";
+  checkedValue?: string;
+  uncheckedValue?: string;
+};
+
+export type FieldConfig<T, K extends keyof T = keyof T> =
+  | TextFieldConfig<T, K>
+  | CheckboxFieldConfig<T, K>;
+
 export type FormValue = string | number;

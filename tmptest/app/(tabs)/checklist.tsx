@@ -11,10 +11,34 @@ export default function ChecklistScreen() {
         schemaName="Checklist"
         fields={
           [
-            { key: "helmet", label: "Helmet", type: "string" },
-            { key: "boots", label: "Boots", type: "string" },
-            { key: "gloves", label: "Gloves", type: "string" },
-            { key: "appliances", label: "Appliances", type: "string" },
+            {
+              key: "helmet",
+              label: "Helmet",
+              type: "checkbox",
+              checkedValue: "Compliant",
+              uncheckedValue: "Non-compliant",
+            },
+            {
+              key: "boots",
+              label: "Boots",
+              type: "checkbox",
+              checkedValue: "Compliant",
+              uncheckedValue: "Non-compliant",
+            },
+            {
+              key: "gloves",
+              label: "Gloves",
+              type: "checkbox",
+              checkedValue: "Compliant",
+              uncheckedValue: "Non-compliant",
+            },
+            {
+              key: "appliances",
+              label: "Appliances",
+              type: "checkbox",
+              checkedValue: "Compliant",
+              uncheckedValue: "Non-compliant",
+            },
           ] as const
         }
       />
