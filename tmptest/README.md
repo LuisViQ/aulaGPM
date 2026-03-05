@@ -1,18 +1,20 @@
-﻿# CRUD Genérico com React Native + TypeScript + Realm
+# CRUD Generico com React Native + TypeScript + Realm
 
-Projeto de estudo com uma tela CRUD reutilizável para múltiplas entidades, usando React Native (Expo), TypeScript e Realm.
+Projeto de estudo com um CRUD reutilizavel para multiplas entidades, usando React Native (Expo), TypeScript, Realm e `expo-router`.
 
 ## Funcionalidades
 
 - Criar registros
 - Listar registros em tempo real
 - Editar registros
-- Excluir com confirmação
+- Excluir com confirmacao
 - Reaproveitar o mesmo componente para entidades diferentes
+- Navegacao por abas com uma tela para cada tabela
 
 ## Stack
 
 - Expo + React Native
+- Expo Router
 - TypeScript
 - Realm (`realm` + `@realm/react`)
 - Gluestack UI
@@ -23,21 +25,44 @@ Projeto de estudo com uma tela CRUD reutilizável para múltiplas entidades, usa
 ```txt
 tmp-test/
   app/
+    _layout.tsx
+    (tabs)/
+      _layout.tsx
+      warehouse.tsx
+      users.tsx
+      checklist.tsx
     crud/
       GenericCrudScreen.tsx
       parse.ts
       types.ts
     database/
       schemas/
-        users.ts
         warehouse.ts
-    index.tsx
-  App.tsx
+        users.ts
+        checklist.ts
 ```
+
+## Telas atuais
+
+- `Warehouse` (`app/(tabs)/warehouse.tsx`)
+- `Users` (`app/(tabs)/users.tsx`)
+- `Checklist` (`app/(tabs)/checklist.tsx`)
+
+Todas usam o mesmo componente:
+
+```tsx
+<GenericCrudScreen<T> />
+```
+
+Props principais:
+
+- `title`: titulo da tela
+- `schemaName`: nome do schema no Realm
+- `fields`: configuracao de campos do formulario/lista
 
 ## Como executar
 
-### Pré-requisitos
+### Pre-requisitos
 
 - Node.js LTS
 - npm
@@ -50,7 +75,7 @@ npm install
 npm start
 ```
 
-Atalhos úteis:
+Atalhos uteis:
 
 ```bash
 npm run android
@@ -59,60 +84,15 @@ npm run web
 npm run lint
 ```
 
-## Como funciona o CRUD genérico
-
-O componente central é:
-
-```tsx
-<GenericCrudScreen<T> />
-```
-
-Props principais:
-
-- `title`: título da tela
-- `schemaName`: nome do schema no Realm
-- `fields`: configuração de campos do formulário/lista
-
-Tipos usados:
-
-```ts
-export type CrudFieldType = "string" | "number";
-export type CrudMode = "create" | "edit";
-
-export type FieldConfig<T, K extends keyof T = keyof T> = {
-  key: K;
-  label: string;
-  type: CrudFieldType;
-};
-```
-
-`keyof T` garante que apenas campos existentes na entidade sejam aceitos.
-
-## Exemplo atual (Warehouse)
-
-Hoje o app está configurado para a entidade `Warehouse` em `app/index.tsx`:
-
-```tsx
-<GenericCrudScreen<Warehouse>
-  title="Warehouse"
-  schemaName="Warehouse"
-  fields={[
-    { key: "productName", label: "Product Name", type: "string" },
-    { key: "productQuantity", label: "Quantity", type: "number" },
-    { key: "productOwner", label: "Product Owner", type: "string" },
-  ] as const}
-/>
-```
-
-## Adicionando uma nova entidade
+## Adicionando uma nova entidade/tabela
 
 1. Crie o schema em `app/database/schemas`.
-2. Registre o schema no `RealmProvider` em `App.tsx`.
-3. Use `GenericCrudScreen<SeuTipo>` em `app/index.tsx`.
-4. Defina os `fields` com chaves válidas da entidade.
+2. Registre o schema em `app/_layout.tsx` no `RealmProvider`.
+3. Crie uma tela em `app/(tabs)/sua-entidade.tsx` usando `GenericCrudScreen<SeuTipo>`.
+4. Adicione a nova rota em `app/(tabs)/_layout.tsx` com `Tabs.Screen`.
 
-## Observações
+## Observacoes
 
 - O helper `parseByType` converte campos `number` vindos do `TextInput`.
 - Novos registros recebem `_id` automaticamente com `Realm.BSON.ObjectId`.
-- A lista é reativa com `useQuery`, então atualiza após create/edit/delete sem refresh manual.
+- A lista e reativa com `useQuery`, entao atualiza apos create/edit/delete sem refresh manual.

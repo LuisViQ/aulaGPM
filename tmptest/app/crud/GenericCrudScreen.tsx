@@ -41,6 +41,15 @@ export function GenericCrudScreen<T extends WithId>({
   }
 
   function submit() {
+    const hasEmptyField = fields.some((f) => {
+      const value = form[f.key];
+      return value === undefined || value === "";
+    });
+
+    if (hasEmptyField) {
+      Alert.alert("Error", "Fill in all the fields.");
+      return;
+    }
     realm.write(() => {
       if (mode === "create") {
         realm.create(schemaName, {
@@ -90,7 +99,7 @@ export function GenericCrudScreen<T extends WithId>({
     <View className="flex-1 bg-white p-6 ">
       <View className="items-center">
         <Card className="w-full max-w-[420px] p-5 gap-4">
-          <Text className="text-xl font-bold text-center text-gray-50">
+          <Text className="text-xl font-bold text-center text-slate-950">
             {title}
           </Text>
 
@@ -128,7 +137,7 @@ export function GenericCrudScreen<T extends WithId>({
           keyExtractor={(item) => item._id.toHexString()}
           ListEmptyComponent={
             <View className="w-full max-w-[420px] mt-4">
-              <Text className="text-center text-gray-500">
+              <Text className="text-center text-gray-950">
                 Nothing here, add something
               </Text>
             </View>
@@ -140,7 +149,7 @@ export function GenericCrudScreen<T extends WithId>({
               <Card className="w-full max-w-[420px] p-4 flex-row items-center justify-between gap-3">
                 <View className="flex-1">
                   <Text
-                    className="font-semibold text-gray-50"
+                    className="font-semibold text-slate-950"
                     numberOfLines={2}
                     ellipsizeMode="tail"
                   >
@@ -156,15 +165,16 @@ export function GenericCrudScreen<T extends WithId>({
                   >
                     <ButtonText>Edit</ButtonText>
                   </Button>
-
-                  <Button
-                    size="sm"
-                    action="negative"
-                    variant="outline"
-                    onPress={() => confirmDelete(item)}
-                  >
-                    <ButtonText>Del</ButtonText>
-                  </Button>
+                  {mode === "create" && (
+                    <Button
+                      size="sm"
+                      action="negative"
+                      variant="outline"
+                      onPress={() => confirmDelete(item)}
+                    >
+                      <ButtonText>Del</ButtonText>
+                    </Button>
+                  )}
                 </View>
               </Card>
             );
