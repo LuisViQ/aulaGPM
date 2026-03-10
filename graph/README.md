@@ -26,9 +26,13 @@ O aplicativo foi desenvolvido com **React Native usando Expo**, utilizando dados
 ## Motivo da escolha da biblioteca de gráficos
 
 A biblioteca **react-native-gifted-charts** foi escolhida principalmente por possuir **alta compatibilidade com Expo**.
+
 [Documentação](https://gifted-charts.web.app/)
+
 [GitHub](https://github.com/Abhinandan-Kushwaha/react-native-gifted-charts)
+
 Muitas bibliotecas de gráficos para React Native dependem de **bibliotecas nativas ou de configurações específicas do React Native CLI**, o que pode gerar dificuldades ao utilizar Expo.
+
 Comando para instalação.
 
 ```
