@@ -63,16 +63,16 @@ Isso torna o desenvolvimento mais rápido e simples dentro do ecossistema Expo.
 ```txt
 fleet-dashboard/
   components/
-    ChartBlock.tsx
-    DriversInfractionsChart.tsx
-    SpeedChartsBlock.tsx
-    RegionRadarChart.tsx
+    chartBlock.tsx
+    driversInfractionsChart.tsx
+    speedChartsBlock.tsx
+    regionRadarChart.tsx
 
   screens/
-    HomeScreen.tsx
-    InfractionsScreen.tsx
-    SpeedScreen.tsx
-    RegionsScreen.tsx
+    home.tsx
+    infractions.tsx
+    speed.tsx
+    regions.tsx
     styles.ts
 
   data/
