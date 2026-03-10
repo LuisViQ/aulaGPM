@@ -21,7 +21,6 @@ export function SpeedChartsBlock({
             thickness={4}
             isAnimated
             animateOnDataChange
-            hideDataPoints
             color="#0BA5A4"
             yAxisColor="#0BA5A4"
             xAxisColor="#0BA5A4"
@@ -29,7 +28,60 @@ export function SpeedChartsBlock({
             verticalLinesColor="rgba(14,164,164,0.4)"
             yAxisTextStyle={styles.axisText}
             xAxisLabelTextStyle={styles.axisText}
-            noOfSections={4}
+            focusEnabled
+            showStripOnFocus
+            focusedDataPointColor="#0BA5A4"
+            focusedDataPointRadius={5}
+            pointerConfig={{
+              pointerStripUptoDataPoint: true,
+              pointerStripColor: "#0BA5A4",
+              pointerStripWidth: 2,
+              pointerColor: "#0BA5A4",
+              radius: 5,
+              activatePointersOnLongPress: false,
+              autoAdjustPointerLabelPosition: true,
+              pointerLabelWidth: 90,
+              pointerLabelHeight: 60,
+              pointerLabelComponent: (items: any[]) => {
+                const item = items?.[0];
+
+                if (!item) return null;
+
+                return (
+                  <View
+                    style={{
+                      backgroundColor: "#111827",
+                      paddingHorizontal: 10,
+                      paddingVertical: 8,
+                      borderRadius: 10,
+                      justifyContent: "center",
+                    }}
+                  >
+                    <Text
+                      style={{
+                        color: "#ffffff",
+                        fontSize: 12,
+                        fontWeight: "600",
+                        textAlign: "center",
+                      }}
+                    >
+                      {item.label}
+                    </Text>
+
+                    <Text
+                      style={{
+                        color: "#d1d5db",
+                        fontSize: 12,
+                        textAlign: "center",
+                        marginTop: 2,
+                      }}
+                    >
+                      {item.value} km/h
+                    </Text>
+                  </View>
+                );
+              },
+            }}
           />
         </View>
       </View>
