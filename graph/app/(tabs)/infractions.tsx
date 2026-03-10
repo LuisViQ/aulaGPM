@@ -2,10 +2,10 @@ import React, { useEffect, useMemo, useState } from "react";
 import { ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import { ChartBlock, ChartItem } from "../components/chartBlock";
+import { ChartBlock } from "../components/chartBlock";
 import { DriversInfractionsChart } from "../components/driversInfractionsChart";
 import mockedData from "../data/mockedData.json";
-import { ChartConfigMap, IconName, RawItem } from "../types/types";
+import { ChartConfigMap, ChartItem, IconName, RawItem } from "../types/types";
 import { styles } from "./styles";
 
 const infractionsMap: ChartConfigMap = {

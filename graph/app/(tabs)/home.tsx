@@ -3,9 +3,9 @@ import React, { useEffect, useState } from "react";
 import { ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import { ChartBlock, ChartItem } from "../components/chartBlock";
+import { ChartBlock } from "../components/chartBlock";
 import mockedData from "../data/mockedData.json";
-import { ChartConfigMap, IconName, RawItem } from "../types/types";
+import { ChartConfigMap, ChartItem, IconName, RawItem } from "../types/types";
 import { styles } from "./styles";
 
 const vehicleTypeMap: ChartConfigMap = {
