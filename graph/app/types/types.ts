@@ -9,3 +9,7 @@ export type RawItem = {
 export type IconName = React.ComponentProps<
   typeof MaterialCommunityIcons
 >["name"];
+export type ChartConfigMap = Record<
+  string,
+  { icon: IconName; color: string; label: string }
+>;

@@ -5,13 +5,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import { ChartBlock, ChartItem } from "../components/chartBlock";
 import mockedData from "../data/mockedData.json";
-import { IconName, RawItem } from "../types/types";
+import { ChartConfigMap, IconName, RawItem } from "../types/types";
 import { styles } from "./styles";
-
-type ChartConfigMap = Record<
-  string,
-  { icon: IconName; color: string; label: string }
->;
 
 const vehicleTypeMap: ChartConfigMap = {
   car: { icon: "car", color: "#3b82f6", label: "Car" },
