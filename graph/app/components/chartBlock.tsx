@@ -1,13 +1,8 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { StyleSheet, Text, View } from "react-native";
 import { PieChart } from "react-native-gifted-charts";
-export type ChartItem = {
-  value: number;
-  color: string;
-  label: string;
-  icon: IconName;
-};
-type IconName = React.ComponentProps<typeof MaterialCommunityIcons>["name"];
+import { ChartItem } from "../types/types";
+
 export function ChartBlock({
   title,
   data,

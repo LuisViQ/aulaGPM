@@ -2,11 +2,9 @@ import React, { useEffect, useState } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import {
-  SpeedChartsBlock,
-  SpeedDataPoint,
-} from "../components/speedChartsBlock";
+import { SpeedChartsBlock } from "../components/speedChartsBlock";
 import mockedData from "../data/mockedData.json";
+import { SpeedDataPoint } from "../types/types";
 
 const emptySpeedData: SpeedDataPoint[] = mockedData.vehicleSpeedPerHour.map(
   () => ({

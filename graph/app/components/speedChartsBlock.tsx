@@ -1,17 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { BarChart, CurveType, LineChart } from "react-native-gifted-charts";
-
-export type SpeedDataPoint = {
-  label: string;
-  value: number;
-};
-
-type SpeedChartsBlockProps = {
-  barTitle: string;
-  lineTitle: string;
-  data: SpeedDataPoint[];
-};
+import { SpeedChartsBlockProps } from "../types/types";
 
 export function SpeedChartsBlock({
   barTitle,

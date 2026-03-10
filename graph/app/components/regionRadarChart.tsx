@@ -1,15 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { RadarChart } from "react-native-gifted-charts";
-
-export type RegionData = {
-  label: string;
-  value: number;
-};
-
-type RegionRadarChartProps = {
-  data: RegionData[];
-};
+import { RegionRadarChartProps } from "../types/types";
 
 export function RegionRadarChart({ data }: RegionRadarChartProps) {
   const values = data.map((item) => item.value);
@@ -19,7 +11,7 @@ export function RegionRadarChart({ data }: RegionRadarChartProps) {
     <View style={styles.chartCard}>
       <Text style={styles.chartTitle}>Vehicles by Region</Text>
 
-      <RadarChart data={values} labels={labels} />
+      <RadarChart data={values} labels={labels} isAnimated />
     </View>
   );
 }

@@ -1,15 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { BarChart } from "react-native-gifted-charts";
-
-export type DriverInfraction = {
-  label: string;
-  value: number;
-};
-
-type DriversInfractionsChartProps = {
-  data: DriverInfraction[];
-};
+import { DriversInfractionsChartProps } from "../types/types";
 
 export function DriversInfractionsChart({
   data,
