@@ -44,3 +44,32 @@ export type ChartItem = {
   label: string;
   icon: IconName;
 };
+export type ChartBlockProps = {
+  title: string;
+  data: ChartItem[];
+  donut?: boolean;
+  isThreeD?: boolean;
+  centerLabelComponent?: React.ReactNode;
+  hasShadow?: boolean;
+};
+export type VehicleOption = {
+  id: string;
+  label: string;
+  type: string;
+};
+
+export type DateOption = {
+  label: string;
+  value: string;
+};
+
+export type VehicleSpeedDate = {
+  date: string;
+  data: SpeedDataPoint[];
+};
+
+export type VehicleSpeedItem = {
+  vehicleId: string;
+  vehicleLabel: string;
+  dates: VehicleSpeedDate[];
+};

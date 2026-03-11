@@ -10,7 +10,7 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="home"
         options={{
-          title: "Home",
+          title: "Início",
           tabBarIcon: () => (
             <MaterialCommunityIcons name="home" size={24} color="black" />
           ),
@@ -19,14 +19,14 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="infractions"
         options={{
-          title: "Infractions",
+          title: "Infrações",
           tabBarIcon: () => <Foundation name="alert" size={24} color="black" />,
         }}
       />
       <Tabs.Screen
         name="speed"
         options={{
-          title: "Speed",
+          title: "Velocidade",
           tabBarIcon: () => (
             <Ionicons name="speedometer" size={24} color="black" />
           ),
@@ -35,7 +35,7 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="regions"
         options={{
-          title: "Regions",
+          title: "Regiões",
           tabBarIcon: () => (
             <Entypo name="location-pin" size={24} color="black" />
           ),

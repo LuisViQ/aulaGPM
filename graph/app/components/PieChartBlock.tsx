@@ -1,34 +1,37 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { PieChart } from "react-native-gifted-charts";
 
 import { ChartBlockProps } from "../types/types";
 
-export function ChartBlock({
-  title,
+export function PieChartBlock({
   data,
   donut = false,
   isThreeD = false,
-  hasShadow = false,
-  centerLabelComponent,
 }: ChartBlockProps) {
-  return (
-    <View style={[styles.chartCard, hasShadow && styles.cardShadow]}>
-      <Text style={styles.chartTitle}>{title}</Text>
+  const totalValue = data.reduce((acc, item) => acc + item.value, 0);
 
+  return (
+    <>
       <PieChart
         data={data.map(({ value, color }) => ({ value, color }))}
         radius={120}
-        innerRadius={donut ? 65 : 0}
-        innerCircleBorderWidth={donut ? 6 : 0}
+        innerRadius={65}
         isAnimated
         donut={donut}
         isThreeD={isThreeD}
         showText={false}
+        innerCircleBorderWidth={6}
         innerCircleBorderColor="#f1f5f9"
-        shadowColor={hasShadow ? "#94a3b8" : "transparent"}
+        shadowColor="#94a3b8"
         strokeWidth={5}
-        centerLabelComponent={() => (donut ? centerLabelComponent : null)}
+        centerLabelComponent={() => (
+          <View style={styles.centerLabelContainer}>
+            <Text style={styles.centerLabelValue}>{totalValue}</Text>
+            <Text style={styles.centerLabelText}>Total</Text>
+          </View>
+        )}
       />
 
       <View style={styles.legendContainer}>
@@ -49,29 +52,11 @@ export function ChartBlock({
           </View>
         ))}
       </View>
-    </View>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
-  chartCard: {
-    backgroundColor: "#ffffff",
-    borderRadius: 16,
-    padding: 20,
-    alignItems: "center",
-    gap: 16,
-  },
-  cardShadow: {
-    shadowColor: "#000",
-    shadowOpacity: 0.08,
-    shadowRadius: 10,
-    elevation: 4,
-  },
-  chartTitle: {
-    fontSize: 17,
-    fontWeight: "600",
-    color: "#1f2937",
-  },
   centerLabelContainer: {
     justifyContent: "center",
     alignItems: "center",
@@ -88,6 +73,7 @@ const styles = StyleSheet.create({
   legendContainer: {
     width: "100%",
     gap: 12,
+    marginTop: 20,
   },
   legendItem: {
     flexDirection: "row",

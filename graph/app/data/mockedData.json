@@ -1,15 +1,15 @@
 {
   "vehiclesByType": [
-    { "text": "car", "value": 18 },
-    { "text": "truck", "value": 7 },
-    { "text": "motorbike", "value": 12 },
+    { "text": "carro", "value": 18 },
+    { "text": "caminhão", "value": 7 },
+    { "text": "moto", "value": 12 },
     { "text": "van", "value": 5 }
   ],
   "vehiclesByStatus": [
-    { "label": "Connected", "value": 16 },
-    { "label": "Off", "value": 14 },
-    { "label": "Outdated 30m", "value": 8 },
-    { "label": "Outdated 24h", "value": 4 }
+    { "label": "Ligado", "value": 16 },
+    { "label": "Desligado", "value": 14 },
+    { "label": "Desatualizado 30m", "value": 8 },
+    { "label": "Desatualizado 24h", "value": 4 }
   ],
   "driversWithMoreInfractions": [
     { "label": "Carlos", "value": 12 },
@@ -19,32 +19,402 @@
     { "label": "Felipe", "value": 6 },
     { "label": "Patrícia", "value": 5 }
   ],
-  "vehicleSpeedPerHour": [
-    { "label": "06:00", "value": 0 },
-    { "label": "07:00", "value": 18 },
-    { "label": "08:00", "value": 35 },
-    { "label": "09:00", "value": 48 },
-    { "label": "10:00", "value": 62 },
-    { "label": "11:00", "value": 58 },
-    { "label": "12:00", "value": 66 },
-    { "label": "13:00", "value": 72 },
-    { "label": "14:00", "value": 64 },
-    { "label": "15:00", "value": 51 },
-    { "label": "16:00", "value": 39 },
-    { "label": "17:00", "value": 25 },
-    { "label": "18:00", "value": 0 }
+  "vehicles": [
+    { "id": "VH001", "label": "JLE-2767", "type": "caminhão" },
+    { "id": "VH002", "label": "HWJ-3368", "type": "carro" },
+    { "id": "VH003", "label": "JTH-6677", "type": "moto" },
+    { "id": "VH004", "label": "MHM-6267", "type": "van" }
+  ],
+  "speedDateOptions": [
+    { "label": "2026-03-08", "value": "2026-03-08" },
+    { "label": "2026-03-09", "value": "2026-03-09" },
+    { "label": "2026-03-10", "value": "2026-03-10" }
+  ],
+  "vehicleSpeedByVehicle": [
+    {
+      "vehicleId": "VH001",
+      "vehicleLabel": "Caminhão 01",
+      "dates": [
+        {
+          "date": "2026-03-08",
+          "data": [
+            { "label": "00", "value": 0 },
+            { "label": "01", "value": 15 },
+            { "label": "02", "value": 45 },
+            { "label": "03", "value": 82 },
+            { "label": "04", "value": 78 },
+            { "label": "05", "value": 30 },
+            { "label": "06", "value": 12 },
+            { "label": "07", "value": 0 },
+            { "label": "08", "value": 55 },
+            { "label": "09", "value": 85 },
+            { "label": "10", "value": 40 },
+            { "label": "11", "value": 10 },
+            { "label": "12", "value": 65 },
+            { "label": "13", "value": 90 },
+            { "label": "14", "value": 88 },
+            { "label": "15", "value": 50 },
+            { "label": "16", "value": 20 },
+            { "label": "17", "value": 0 },
+            { "label": "18", "value": 35 },
+            { "label": "19", "value": 60 },
+            { "label": "20", "value": 45 },
+            { "label": "21", "value": 15 },
+            { "label": "22", "value": 0 },
+            { "label": "23", "value": 0 }
+          ]
+        },
+        {
+          "date": "2026-03-09",
+          "data": [
+            { "label": "00", "value": 10 },
+            { "label": "01", "value": 0 },
+            { "label": "02", "value": 0 },
+            { "label": "03", "value": 25 },
+            { "label": "04", "value": 60 },
+            { "label": "05", "value": 85 },
+            { "label": "06", "value": 70 },
+            { "label": "07", "value": 40 },
+            { "label": "08", "value": 15 },
+            { "label": "09", "value": 0 },
+            { "label": "10", "value": 45 },
+            { "label": "11", "value": 88 },
+            { "label": "12", "value": 92 },
+            { "label": "13", "value": 55 },
+            { "label": "14", "value": 30 },
+            { "label": "15", "value": 10 },
+            { "label": "16", "value": 50 },
+            { "label": "17", "value": 80 },
+            { "label": "18", "value": 65 },
+            { "label": "19", "value": 20 },
+            { "label": "20", "value": 0 },
+            { "label": "21", "value": 0 },
+            { "label": "22", "value": 15 },
+            { "label": "23", "value": 0 }
+          ]
+        },
+        {
+          "date": "2026-03-10",
+          "data": [
+            { "label": "00", "value": 0 },
+            { "label": "01", "value": 0 },
+            { "label": "02", "value": 30 },
+            { "label": "03", "value": 65 },
+            { "label": "04", "value": 40 },
+            { "label": "05", "value": 10 },
+            { "label": "06", "value": 0 },
+            { "label": "07", "value": 55 },
+            { "label": "08", "value": 85 },
+            { "label": "09", "value": 90 },
+            { "label": "10", "value": 60 },
+            { "label": "11", "value": 25 },
+            { "label": "12", "value": 0 },
+            { "label": "13", "value": 45 },
+            { "label": "14", "value": 75 },
+            { "label": "15", "value": 88 },
+            { "label": "16", "value": 50 },
+            { "label": "17", "value": 15 },
+            { "label": "18", "value": 0 },
+            { "label": "19", "value": 35 },
+            { "label": "20", "value": 70 },
+            { "label": "21", "value": 45 },
+            { "label": "22", "value": 10 },
+            { "label": "23", "value": 0 }
+          ]
+        }
+      ]
+    },
+    {
+      "vehicleId": "VH002",
+      "vehicleLabel": "Carro 01",
+      "dates": [
+        {
+          "date": "2026-03-08",
+          "data": [
+            { "label": "00", "value": 0 },
+            { "label": "01", "value": 0 },
+            { "label": "02", "value": 0 },
+            { "label": "03", "value": 0 },
+            { "label": "04", "value": 45 },
+            { "label": "05", "value": 110 },
+            { "label": "06", "value": 120 },
+            { "label": "07", "value": 80 },
+            { "label": "08", "value": 30 },
+            { "label": "09", "value": 0 },
+            { "label": "10", "value": 65 },
+            { "label": "11", "value": 115 },
+            { "label": "12", "value": 90 },
+            { "label": "13", "value": 40 },
+            { "label": "14", "value": 10 },
+            { "label": "15", "value": 55 },
+            { "label": "16", "value": 105 },
+            { "label": "17", "value": 118 },
+            { "label": "18", "value": 70 },
+            { "label": "19", "value": 25 },
+            { "label": "20", "value": 0 },
+            { "label": "21", "value": 0 },
+            { "label": "22", "value": 40 },
+            { "label": "23", "value": 15 }
+          ]
+        },
+        {
+          "date": "2026-03-09",
+          "data": [
+            { "label": "00", "value": 0 },
+            { "label": "01", "value": 20 },
+            { "label": "02", "value": 50 },
+            { "label": "03", "value": 95 },
+            { "label": "04", "value": 110 },
+            { "label": "05", "value": 60 },
+            { "label": "06", "value": 15 },
+            { "label": "07", "value": 0 },
+            { "label": "08", "value": 0 },
+            { "label": "09", "value": 35 },
+            { "label": "10", "value": 85 },
+            { "label": "11", "value": 120 },
+            { "label": "12", "value": 100 },
+            { "label": "13", "value": 50 },
+            { "label": "14", "value": 0 },
+            { "label": "15", "value": 45 },
+            { "label": "16", "value": 90 },
+            { "label": "17", "value": 115 },
+            { "label": "18", "value": 80 },
+            { "label": "19", "value": 30 },
+            { "label": "20", "value": 0 },
+            { "label": "21", "value": 0 },
+            { "label": "22", "value": 0 },
+            { "label": "23", "value": 0 }
+          ]
+        },
+        {
+          "date": "2026-03-10",
+          "data": [
+            { "label": "00", "value": 45 },
+            { "label": "01", "value": 80 },
+            { "label": "02", "value": 110 },
+            { "label": "03", "value": 65 },
+            { "label": "04", "value": 20 },
+            { "label": "05", "value": 0 },
+            { "label": "06", "value": 0 },
+            { "label": "07", "value": 30 },
+            { "label": "08", "value": 75 },
+            { "label": "09", "value": 115 },
+            { "label": "10", "value": 120 },
+            { "label": "11", "value": 85 },
+            { "label": "12", "value": 40 },
+            { "label": "13", "value": 0 },
+            { "label": "14", "value": 0 },
+            { "label": "15", "value": 50 },
+            { "label": "16", "value": 95 },
+            { "label": "17", "value": 118 },
+            { "label": "18", "value": 70 },
+            { "label": "19", "value": 25 },
+            { "label": "20", "value": 0 },
+            { "label": "21", "value": 0 },
+            { "label": "22", "value": 0 },
+            { "label": "23", "value": 0 }
+          ]
+        }
+      ]
+    },
+    {
+      "vehicleId": "VH003",
+      "vehicleLabel": "Moto 01",
+      "dates": [
+        {
+          "date": "2026-03-08",
+          "data": [
+            { "label": "00", "value": 0 },
+            { "label": "01", "value": 30 },
+            { "label": "02", "value": 65 },
+            { "label": "03", "value": 40 },
+            { "label": "04", "value": 10 },
+            { "label": "05", "value": 0 },
+            { "label": "06", "value": 55 },
+            { "label": "07", "value": 90 },
+            { "label": "08", "value": 105 },
+            { "label": "09", "value": 75 },
+            { "label": "10", "value": 35 },
+            { "label": "11", "value": 0 },
+            { "label": "12", "value": 20 },
+            { "label": "13", "value": 60 },
+            { "label": "14", "value": 95 },
+            { "label": "15", "value": 110 },
+            { "label": "16", "value": 80 },
+            { "label": "17", "value": 45 },
+            { "label": "18", "value": 15 },
+            { "label": "19", "value": 0 },
+            { "label": "20", "value": 0 },
+            { "label": "21", "value": 25 },
+            { "label": "22", "value": 50 },
+            { "label": "23", "value": 10 }
+          ]
+        },
+        {
+          "date": "2026-03-09",
+          "data": [
+            { "label": "00", "value": 0 },
+            { "label": "01", "value": 0 },
+            { "label": "02", "value": 15 },
+            { "label": "03", "value": 50 },
+            { "label": "04", "value": 85 },
+            { "label": "05", "value": 100 },
+            { "label": "06", "value": 60 },
+            { "label": "07", "value": 25 },
+            { "label": "08", "value": 0 },
+            { "label": "09", "value": 40 },
+            { "label": "10", "value": 75 },
+            { "label": "11", "value": 105 },
+            { "label": "12", "value": 80 },
+            { "label": "13", "value": 35 },
+            { "label": "14", "value": 0 },
+            { "label": "15", "value": 20 },
+            { "label": "16", "value": 65 },
+            { "label": "17", "value": 95 },
+            { "label": "18", "value": 110 },
+            { "label": "19", "value": 70 },
+            { "label": "20", "value": 30 },
+            { "label": "21", "value": 0 },
+            { "label": "22", "value": 0 },
+            { "label": "23", "value": 0 }
+          ]
+        },
+        {
+          "date": "2026-03-10",
+          "data": [
+            { "label": "00", "value": 20 },
+            { "label": "01", "value": 55 },
+            { "label": "02", "value": 90 },
+            { "label": "03", "value": 105 },
+            { "label": "04", "value": 75 },
+            { "label": "05", "value": 30 },
+            { "label": "06", "value": 0 },
+            { "label": "07", "value": 0 },
+            { "label": "08", "value": 45 },
+            { "label": "09", "value": 80 },
+            { "label": "10", "value": 110 },
+            { "label": "11", "value": 85 },
+            { "label": "12", "value": 40 },
+            { "label": "13", "value": 10 },
+            { "label": "14", "value": 0 },
+            { "label": "15", "value": 35 },
+            { "label": "16", "value": 70 },
+            { "label": "17", "value": 100 },
+            { "label": "18", "value": 95 },
+            { "label": "19", "value": 50 },
+            { "label": "20", "value": 15 },
+            { "label": "21", "value": 0 },
+            { "label": "22", "value": 0 },
+            { "label": "23", "value": 0 }
+          ]
+        }
+      ]
+    },
+    {
+      "vehicleId": "VH004",
+      "vehicleLabel": "Van 01",
+      "dates": [
+        {
+          "date": "2026-03-08",
+          "data": [
+            { "label": "00", "value": 0 },
+            { "label": "01", "value": 0 },
+            { "label": "02", "value": 0 },
+            { "label": "03", "value": 20 },
+            { "label": "04", "value": 55 },
+            { "label": "05", "value": 85 },
+            { "label": "06", "value": 95 },
+            { "label": "07", "value": 60 },
+            { "label": "08", "value": 25 },
+            { "label": "09", "value": 0 },
+            { "label": "10", "value": 35 },
+            { "label": "11", "value": 70 },
+            { "label": "12", "value": 90 },
+            { "label": "13", "value": 100 },
+            { "label": "14", "value": 75 },
+            { "label": "15", "value": 40 },
+            { "label": "16", "value": 10 },
+            { "label": "17", "value": 0 },
+            { "label": "18", "value": 0 },
+            { "label": "19", "value": 30 },
+            { "label": "20", "value": 65 },
+            { "label": "21", "value": 80 },
+            { "label": "22", "value": 45 },
+            { "label": "23", "value": 15 }
+          ]
+        },
+        {
+          "date": "2026-03-09",
+          "data": [
+            { "label": "00", "value": 10 },
+            { "label": "01", "value": 40 },
+            { "label": "02", "value": 75 },
+            { "label": "03", "value": 95 },
+            { "label": "04", "value": 100 },
+            { "label": "05", "value": 65 },
+            { "label": "06", "value": 30 },
+            { "label": "07", "value": 0 },
+            { "label": "08", "value": 0 },
+            { "label": "09", "value": 25 },
+            { "label": "10", "value": 55 },
+            { "label": "11", "value": 85 },
+            { "label": "12", "value": 98 },
+            { "label": "13", "value": 70 },
+            { "label": "14", "value": 35 },
+            { "label": "15", "value": 0 },
+            { "label": "16", "value": 0 },
+            { "label": "17", "value": 45 },
+            { "label": "18", "value": 80 },
+            { "label": "19", "value": 90 },
+            { "label": "20", "value": 60 },
+            { "label": "21", "value": 20 },
+            { "label": "22", "value": 0 },
+            { "label": "23", "value": 0 }
+          ]
+        },
+        {
+          "date": "2026-03-10",
+          "data": [
+            { "label": "00", "value": 0 },
+            { "label": "01", "value": 0 },
+            { "label": "02", "value": 15 },
+            { "label": "03", "value": 45 },
+            { "label": "04", "value": 80 },
+            { "label": "05", "value": 95 },
+            { "label": "06", "value": 100 },
+            { "label": "07", "value": 70 },
+            { "label": "08", "value": 35 },
+            { "label": "09", "value": 0 },
+            { "label": "10", "value": 25 },
+            { "label": "11", "value": 60 },
+            { "label": "12", "value": 85 },
+            { "label": "13", "value": 98 },
+            { "label": "14", "value": 75 },
+            { "label": "15", "value": 40 },
+            { "label": "16", "value": 10 },
+            { "label": "17", "value": 0 },
+            { "label": "18", "value": 0 },
+            { "label": "19", "value": 30 },
+            { "label": "20", "value": 65 },
+            { "label": "21", "value": 90 },
+            { "label": "22", "value": 50 },
+            { "label": "23", "value": 15 }
+          ]
+        }
+      ]
+    }
   ],
   "infractionsByType": [
-    { "label": "Speed", "value": 20 },
-    { "label": "Braking", "value": 11 },
-    { "label": "Sharp curve", "value": 8 },
-    { "label": "Acceleration", "value": 13 }
+    { "label": "Velocidade", "value": 20 },
+    { "label": "Frenagem", "value": 11 },
+    { "label": "Curva acentuada", "value": 8 },
+    { "label": "Aceleração", "value": 13 }
   ],
   "vehiclesByRegion": [
-    { "label": "North", "value": 9 },
-    { "label": "South", "value": 7 },
-    { "label": "East", "value": 12 },
-    { "label": "West", "value": 6 },
-    { "label": "Center", "value": 8 }
+    { "label": "Norte", "value": 9 },
+    { "label": "Sul", "value": 7 },
+    { "label": "Leste", "value": 12 },
+    { "label": "Oeste", "value": 6 },
+    { "label": "Centro", "value": 8 }
   ]
 }

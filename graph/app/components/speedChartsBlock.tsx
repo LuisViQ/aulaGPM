@@ -1,6 +1,8 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { BarChart, CurveType, LineChart } from "react-native-gifted-charts";
+import { LinearGradient, Stop } from "react-native-svg";
+
 import { SpeedChartsBlockProps } from "../types/types";
 
 export function SpeedChartsBlock({
@@ -12,96 +14,59 @@ export function SpeedChartsBlock({
     <>
       <View style={styles.chartCard}>
         <Text style={styles.chartTitle}>{lineTitle}</Text>
-
-        <View style={styles.chartArea}>
-          <LineChart
-            data={data}
-            spacing={22}
-            curveType={CurveType.QUADRATIC}
-            thickness={4}
-            isAnimated
-            animateOnDataChange
-            color="#0BA5A4"
-            yAxisColor="#0BA5A4"
-            xAxisColor="#0BA5A4"
-            showVerticalLines
-            verticalLinesColor="rgba(14,164,164,0.4)"
-            yAxisTextStyle={styles.axisText}
-            xAxisLabelTextStyle={styles.axisText}
-            focusEnabled
-            showStripOnFocus
-            focusedDataPointColor="#0BA5A4"
-            focusedDataPointRadius={5}
-            pointerConfig={{
-              pointerStripUptoDataPoint: true,
-              pointerStripColor: "#0BA5A4",
-              pointerStripWidth: 2,
-              pointerColor: "#0BA5A4",
-              radius: 5,
-              activatePointersOnLongPress: false,
-              autoAdjustPointerLabelPosition: true,
-              pointerLabelWidth: 90,
-              pointerLabelHeight: 60,
-              pointerLabelComponent: (items: any[]) => {
-                const item = items?.[0];
-
-                if (!item) return null;
-
-                return (
-                  <View
-                    style={{
-                      backgroundColor: "#111827",
-                      paddingHorizontal: 10,
-                      paddingVertical: 8,
-                      borderRadius: 10,
-                      justifyContent: "center",
-                    }}
-                  >
-                    <Text
-                      style={{
-                        color: "#ffffff",
-                        fontSize: 12,
-                        fontWeight: "600",
-                        textAlign: "center",
-                      }}
-                    >
-                      {item.label}
-                    </Text>
-
-                    <Text
-                      style={{
-                        color: "#d1d5db",
-                        fontSize: 12,
-                        textAlign: "center",
-                        marginTop: 2,
-                      }}
-                    >
-                      {item.value} km/h
-                    </Text>
-                  </View>
-                );
-              },
-            }}
-          />
-        </View>
+        <LineChart
+          data={data}
+          height={220}
+          adjustToWidth
+          initialSpacing={10}
+          endSpacing={10}
+          curveType={CurveType.QUADRATIC}
+          thickness={4}
+          animateOnDataChange
+          areaChart
+          color="#38bdf8"
+          dataPointsColor="#38bdf8"
+          dataPointsRadius={5}
+          yAxisColor="#94a3b8"
+          xAxisColor="#94a3b8"
+          showVerticalLines
+          hideDataPoints
+          verticalLinesColor="#e2e8f0"
+          yAxisTextStyle={styles.axisText}
+          xAxisLabelTextStyle={styles.axisText}
+          noOfSections={4}
+          focusedDataPointColor="#fb7185"
+          focusedDataPointRadius={6}
+          areaGradientId="speedGradient"
+          showScrollIndicator
+          areaGradientComponent={() => (
+            <LinearGradient id="speedGradient" x1="0" y1="0" x2="0" y2="1">
+              <Stop offset="0" stopColor="#fb7185" stopOpacity="0.55" />
+              <Stop offset="0.28" stopColor="#a78bfa" stopOpacity="0.45" />
+              <Stop offset="0.58" stopColor="#38bdf8" stopOpacity="0.32" />
+              <Stop offset="1" stopColor="#2563eb" stopOpacity="0.14" />
+            </LinearGradient>
+          )}
+        />
       </View>
+
       <View style={styles.chartCard}>
         <Text style={styles.chartTitle}>{barTitle}</Text>
-
-        <View style={styles.chartArea}>
-          <BarChart
-            data={data}
-            barWidth={14}
-            spacing={12}
-            frontColor="#3b82f6"
-            noOfSections={4}
-            yAxisThickness={1}
-            xAxisThickness={1}
-            yAxisTextStyle={styles.axisText}
-            xAxisLabelTextStyle={styles.axisText}
-            hideRules={false}
-          />
-        </View>
+        <BarChart
+          data={data}
+          height={220}
+          barWidth={14}
+          spacing={12}
+          barBorderRadius={4}
+          frontColor="#3b82f6"
+          noOfSections={4}
+          yAxisThickness={1}
+          xAxisThickness={1}
+          yAxisTextStyle={styles.axisText}
+          xAxisLabelTextStyle={styles.axisText}
+          hideRules={false}
+          isAnimated
+        />
       </View>
     </>
   );
@@ -119,19 +84,12 @@ const styles = StyleSheet.create({
     gap: 16,
     overflow: "hidden",
   },
-
   chartTitle: {
     fontSize: 17,
     fontWeight: "600",
     color: "#1f2937",
     textAlign: "center",
   },
-
-  chartArea: {
-    width: "100%",
-    alignItems: "center",
-  },
-
   axisText: {
     color: "#6b7280",
     fontSize: 11,

@@ -9,24 +9,24 @@ import { ChartConfigMap, ChartItem, IconName, RawItem } from "../types/types";
 import { styles } from "./styles";
 
 const vehicleTypeMap: ChartConfigMap = {
-  car: { icon: "car", color: "#3b82f6", label: "Car" },
-  truck: { icon: "truck", color: "#f97316", label: "Truck" },
-  motorbike: { icon: "motorbike", color: "#22c55e", label: "Motorbike" },
+  carro: { icon: "car", color: "#3b82f6", label: "Carro" },
+  caminhão: { icon: "truck", color: "#f97316", label: "Caminhão" },
+  moto: { icon: "motorbike", color: "#22c55e", label: "Moto" },
   van: { icon: "van-passenger", color: "#a855f7", label: "Van" },
 };
 
 const statusMap: ChartConfigMap = {
-  connected: { icon: "engine", color: "#16a34a", label: "Connected" },
-  off: { icon: "engine-off", color: "#6b7280", label: "Off" },
-  "outdated 30m": {
+  ligado: { icon: "engine", color: "#16a34a", label: "Ligado" },
+  desligado: { icon: "engine-off", color: "#6b7280", label: "Desligado" },
+  "desatualizado 30m": {
     icon: "clock-alert-outline",
     color: "#f59e0b",
-    label: "Outdated 30m",
+    label: "Desatualizado 30m",
   },
-  "outdated 24h": {
+  "desatualizado 24h": {
     icon: "calendar-alert",
     color: "#ef4444",
-    label: "Outdated 24h",
+    label: "Desatualizado 24h",
   },
 };
 
@@ -37,7 +37,7 @@ function formatData(items: RawItem[], map: ChartConfigMap): ChartItem[] {
     const config = map[key] ?? {
       icon: "help-circle" as IconName,
       color: "#9ca3af",
-      label: item.label || item.text || "Unknown",
+      label: item.label || item.text || "Desconhecido",
     };
 
     return {
@@ -52,7 +52,10 @@ function formatData(items: RawItem[], map: ChartConfigMap): ChartItem[] {
 export default function HomeScreen() {
   const [vehicleTypeData, setVehicleTypeData] = useState<ChartItem[]>([]);
   const [vehicleStatusData, setVehicleStatusData] = useState<ChartItem[]>([]);
-
+  const totalValue = vehicleStatusData.reduce(
+    (acc, item) => acc + item.value,
+    0,
+  );
   useEffect(() => {
     setVehicleTypeData(
       formatData(mockedData.vehiclesByType as RawItem[], vehicleTypeMap),
@@ -69,12 +72,12 @@ export default function HomeScreen() {
   );
 
   const connectedVehicles =
-    vehicleStatusData.find((item) => item.label === "Connected")?.value ?? 0;
+    vehicleStatusData.find((item) => item.label === "Ligado")?.value ?? 0;
 
   return (
     <SafeAreaView style={styles.safe}>
       <ScrollView contentContainerStyle={styles.container}>
-        <Text style={styles.title}>Fleet Dashboard</Text>
+        <Text style={styles.title}>Painel da Frota</Text>
 
         <View style={styles.summaryRow}>
           <View style={styles.summaryCard}>
@@ -84,18 +87,28 @@ export default function HomeScreen() {
               color="#2563eb"
             />
             <Text style={styles.summaryValue}>{totalVehicles}</Text>
-            <Text style={styles.summaryLabel}>Vehicles</Text>
+            <Text style={styles.summaryLabel}>Veículos</Text>
           </View>
 
           <View style={styles.summaryCard}>
             <MaterialCommunityIcons name="engine" size={22} color="#16a34a" />
             <Text style={styles.summaryValue}>{connectedVehicles}</Text>
-            <Text style={styles.summaryLabel}>Connected</Text>
+            <Text style={styles.summaryLabel}>Ligado</Text>
           </View>
         </View>
 
-        <ChartBlock title="Vehicles by Type" data={vehicleTypeData} />
-        <ChartBlock title="Vehicles by Status" data={vehicleStatusData} />
+        <ChartBlock title="Veículos por Tipo" data={vehicleTypeData} />
+        <ChartBlock
+          title="Veículos por Status"
+          data={vehicleStatusData}
+          centerLabelComponent={
+            <View style={styles.centerLabelContainer}>
+              <Text style={styles.centerLabelValue}>{totalValue}</Text>
+              <Text style={styles.centerLabelText}>Total</Text>
+            </View>
+          }
+          donut={true}
+        />
       </ScrollView>
     </SafeAreaView>
   );
