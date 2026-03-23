@@ -1,27 +1,26 @@
+import 'dotenv/config';
+
 export default {
   expo: {
     name: 'imageMetaData',
     slug: 'imageMetaData',
     version: '1.0.0',
-    orientation: 'portrait',
     newArchEnabled: true,
-    plugins: [], 
     ios: {
-      supportsTablet: true,
       bundleIdentifier: 'com.lqueiroz.imagemetadata',
       config: {
-        googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY_IOS,
-      },
-      infoPlist: {
-        NSLocationWhenInUseUsageDescription: 'Este aplicativo utiliza sua localização para associar dados às imagens.',
+        googleMapsApiKey: process.env.EXPO_PUBLIC_GOOGLE_MAPS_API_KEY_IOS,
       },
     },
     android: {
       package: 'com.lqueiroz.imagemetadata',
-      permissions: ['ACCESS_FINE_LOCATION', 'ACCESS_COARSE_LOCATION'],
       config: {
-        googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY_ANDROID,
+        // A estrutura que funcionou no JSON, mas agora com a variável
+        googleMaps: {
+          apiKey: process.env.EXPO_PUBLIC_GOOGLE_MAPS_API_KEY_ANDROID 
+        }
       },
+      permissions: ['ACCESS_FINE_LOCATION', 'ACCESS_COARSE_LOCATION'],
     },
     extra: {
       eas: {
