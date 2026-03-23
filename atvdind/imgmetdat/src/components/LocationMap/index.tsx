@@ -1,76 +1,71 @@
 import React from "react";
 import { View, Text, Button } from "react-native";
-import Mapbox from "@rnmapbox/maps";
-import type { MapboxCoordinate } from "../../types/location";
-import type { Feature, LineString } from "geojson";
+import MapView, { 
+  Marker, 
+  Polyline, 
+  Callout, 
+  PROVIDER_GOOGLE 
+} from "react-native-maps";
 import { styles } from "./styles";
 
+// No react-native-maps, o formato é { latitude, longitude } em vez de array [lon, lat]
+const markerCoordinate = {
+  latitude: -4.9873,
+  longitude: -44.6975,
+};
+
+// Convertendo as coordenadas do GeoJSON para o formato do Google Maps
+const routeCoordinates = [
+  { latitude: -4.986742, longitude: -44.696748 },
+  { latitude: -4.9873, longitude: -44.6975 },
+  { latitude: -4.9885, longitude: -44.6985 },
+  { latitude: -4.9892, longitude: -44.6992 },
+];
+
 export function LocationMap() {
-  const markerCoordinate: MapboxCoordinate = [-44.6975, -4.9873];
-
-  const routeGeoJSON: Feature<LineString> = {
-    type: "Feature",
-    geometry: {
-      type: "LineString",
-      coordinates: [
-        [-44.696748, -4.986742],
-        [-44.6975, -4.9873],
-        [-44.6985, -4.9885],
-        [-44.6992, -4.9892],
-      ],
-    },
-    properties: {},
-  };
-
   return (
     <View style={styles.container}>
-      <Mapbox.MapView
+      <MapView
+        provider={PROVIDER_GOOGLE}
         style={styles.map}
-        styleURL="mapbox://styles/mapbox/satellite-v9"
+        mapType="satellite" // Equivalente ao satellite-v9 do Mapbox
+        showsUserLocation={true}
+        followsUserLocation={true}
+        initialRegion={{
+          ...markerCoordinate,
+          latitudeDelta: 0.01,
+          longitudeDelta: 0.01,
+        }}
       >
-        <Mapbox.Camera
-          followUserLocation
-          followZoomLevel={13}
-          centerCoordinate={markerCoordinate}
+        {/* Rota (Substitui o ShapeSource/LineLayer) */}
+        <Polyline
+          coordinates={routeCoordinates}
+          strokeColor="#FF0000"
+          strokeWidth={4}
+          lineJoin="round"
+          lineCap="round"
         />
 
-        <Mapbox.UserLocation
-          visible
-          androidRenderMode="gps"
-          showsUserHeadingIndicator
-        />
-
-        <Mapbox.ShapeSource id="routeSource" shape={routeGeoJSON}>
-          <Mapbox.LineLayer
-            id="routeLine"
-            style={{
-              lineJoin: "round",
-              lineCap: "round",
-              lineColor: "#FF0000",
-              lineWidth: 4,
-              lineOpacity: 0.9,
-            }}
-          />
-        </Mapbox.ShapeSource>
-
-        <Mapbox.PointAnnotation
-          id="youHouse"
+        {/* Marcador (Substitui o PointAnnotation) */}
+        <Marker
           coordinate={markerCoordinate}
-          anchor={{ x: 0.5, y: 1 }}
+          title="youHouse"
         >
-          <Mapbox.Callout title="ola">
-            <View style={{ backgroundColor: "white", padding: 5 }}>
+          {/* Callout Personalizado */}
+          <Callout tooltip>
+            <View style={{ backgroundColor: "white", padding: 10, borderRadius: 5, minWidth: 150 }}>
+              <Text style={{ fontWeight: 'bold', marginBottom: 5 }}>ola</Text>
               <Text>Texto personalizado</Text>
+              {/* Nota: Botões dentro de Callout no Android/iOS podem ter limitações de clique. 
+                  Muitas vezes o clique é capturado pelo onCalloutPress do Marker. */}
               <Button
                 title="Olá"
-                onPress={() => {
-                  console.log("test");
-                }}
+                onPress={() => console.log("test")}
               />
             </View>
-          </Mapbox.Callout>
-        </Mapbox.PointAnnotation>
-      </Mapbox.MapView>
+          </Callout>
+        </Marker>
+      </MapView>
     </View>
   );
 }
